@@ -9,19 +9,32 @@ Dark green: #28b485
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    /*all the html elements on page are boxes, de default size of these boxes are 
+    consider only the content of the box, ignoring the margins, 
+    which causes problems with WIDTH and HEIGHT
+    Default value: content-box*/
+    box-sizing: border-box; /*width and height considers border and padding too now*/
 }
 
 body {
  font-family: "Lato", sans-serif;
  font-weight: 400;
  font-size: 16px;
- line-height: 1.7;
+ line-height: 1.7;/*one point seven times bigger than the default line-height*/
  color:#777;
-}
+ padding: 30px;
+ }
 
 .header {
+    /*percent is always related to ancestor element, but vh is related to VIEWPORT
+    1 vh = 1/100 of total viewport height.
+    vh = viewport Heigh: vw = viewport Width*/
     height: 95vh;
-    background-image: url(../img/hero.jpg);
-    background-size: cover;
+    background-image: /*we can put more than one, gradient is amazing*/
+        linear-gradient(to right bottom, #7ed56fdc, #28b485e0), 
+        url(../img/hero.jpg);
+    background-size: cover; /*Resize the background image to cover the entire container*/
+    background-position: top; /*ensures that the top of image will always be intact, if crop is needed, it will occur on bottom parts*/
+    /*allows to crop parts of this element, receiving funcions like poligon, circle, ellipse, etc*/
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);/*x y = begins on left top, and then it goes on see https://bennettfeely.com/clippy/*/
 }
